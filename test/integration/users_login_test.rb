@@ -4,7 +4,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   
    def setup
     @user = users(:michael)
-  end
+   end
 
   test "login with valid information followed by logout" do
     get login_path
