@@ -25,9 +25,8 @@ export default {
     login() {
       axios.post('/api/v1/sessions', {email:this.email, password:this.password, remember_me:this.remember_me})
       .then(response => {
-        window.history.pushState(null, null, '/');
-        window.location.reload(false);
-        console.log("OK")
+        window.location.href ="/";
+        console.log("OK");
       })
       .catch(response => {
         console.log("Miss")
