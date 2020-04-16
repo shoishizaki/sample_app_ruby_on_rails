@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   namespace :api, {format: 'json'} do
     namespace :v1 do
       resources :sessions, only: [:create]
+      resources :static_pages, only: [:index, :help, :about, :contact]
     end
   end
-  
   
   get 'password_resets/new'
 
