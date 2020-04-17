@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create]
       resources :static_pages, only: [:index, :help, :about, :contact]
       resources :microposts, only: [:create, :index]
-      resources :users, only: [:create]
+      resources :users, only: [:create, :index]
     end
   end
   

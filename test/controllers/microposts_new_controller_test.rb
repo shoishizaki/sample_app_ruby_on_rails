@@ -16,11 +16,9 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
     post '/api/v1/microposts', params: {user_id: user_id, micropost: "success post"}
     assert_equal 200, @response.status
     
-    get '/api/v1/static_pages.json'
-    assert_equal 1, Micropost.all.count
-    micropost = Micropost.find_by(user_id: user_id, content: micropost)
-    assert_equal "success post",　micropost.content
-    assert_equal 1, micropost.id
+    assert_equal 39, Micropost.all.count
+    micropost = Micropost.find_by(content: "success post")
+    assert_equal "success post", micropost.content
   end
   
   #期待値：user_idが存在しないため、投稿失敗
