@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if = "isUserId">
+    <div v-if = "existUserId">
       <h3>MicroPost</h3>
       <labal for="micropost"></labal>
       <textarea id="micropost" v-model="micropost"></textarea>
@@ -11,31 +11,36 @@
 </template>
 
 <script>
-import axios from 'axios';
+  import axios from 'axios';
 
-export default {
-  computed: {
-    isUserId() {
-      return this.user_id !== null
-    }
-  },
+ // nullはバグを引き起こしやすい
+ // コードで人がわかりやすいように書く
+ // バグが無いコードが書けることが大切　＝　可読性が高い+チェックをする
+ //          ↑
+ // goとかいいかも（go テイレイヤー)
+ //人の書いたコードを見る
+  export default {
+    computed: {
+      existUserId() {
+        return this.user_id !== ""
+      }
+    },
+  
   data: function () {
     return {
       micropost: "",
-      user_id: null
+      user_id: 0
     }
   },
+  
   methods: {
     createPost() {
       axios.post('/api/v1/microposts', {micropost:this.micropost, user_id:this.user_id})
-      .then(response => {
-        window.location.href ="/";
-      })
-      .catch(response => {
-        console.log("Miss")
-      })
+      .then(response => {window.location.href ="/";})
+      .catch(response => {console.log("Miss")})
     }
   },
+  
   created() {
     axios.get('/api/v1/microposts.json')
     .then(response => {this.user_id = response.data})
@@ -46,8 +51,8 @@ export default {
 </script>
 
 <style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
+  p {
+    font-size: 2em;
+    text-align: center;
+  }
 </style>

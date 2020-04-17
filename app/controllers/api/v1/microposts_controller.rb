@@ -5,9 +5,9 @@ def create
     user_id = params[:user_id]
     micropost_data = Micropost.new(user_id: user_id, content: content)
     if micropost_data.save
-        render json: {} ,status: :ok
+      render json: {} ,status: :ok
     else
-      render 'static_pages/home'
+      render json:{}, status: 500
     end
 end
 
