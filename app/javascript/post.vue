@@ -22,14 +22,15 @@
   export default {
     computed: {
       existUserId() {
-        return this.user_id !== ""
+        return this.user_id !== null
       }
     },
   
+  // あとでuser_id=nullは定義し直す必要あり←バグが起こる可能性あり
   data: function () {
     return {
       micropost: "",
-      user_id: 0
+      user_id: null
     }
   },
   
