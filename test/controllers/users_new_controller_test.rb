@@ -94,4 +94,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal 34, User.all.count
   end
   
+  #概要：ユーザー情報が正常に取得できている
+  #期待値：status = 200
+  test "should return users infomation" do
+    get '/api/v1/users.json'
+    assert_equal 200, @response.status
+  end
+  
 end
