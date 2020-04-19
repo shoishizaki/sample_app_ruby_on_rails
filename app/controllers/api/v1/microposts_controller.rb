@@ -17,4 +17,11 @@ def index
   render json: user_id
 end
 
+#個人のMicropostを渡す
+def show
+  user_id = params[:id]
+  user_micropost = Micropost.where(user_id: user_id)
+  render json: user_micropost
+end
+
 end

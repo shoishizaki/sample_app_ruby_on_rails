@@ -27,4 +27,10 @@ class Api::V1::UsersController < ApiController
     end
   end
   
+  #ユーザーの詳細を送る
+  def show
+    user = User.find(params[:id])
+    render json: user
+  end
+  
 end

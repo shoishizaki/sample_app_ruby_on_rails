@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :sessions, only: [:create]
       resources :static_pages, only: [:index, :help, :about, :contact]
-      resources :microposts, only: [:create, :index]
-      resources :users, only: [:create, :index]
+      resources :microposts, only: [:create, :index, :show]
+      resources :users, only: [:create, :index, :show]
     end
   end
   
