@@ -3,20 +3,20 @@
     <div v-if = "existUserId">
       <div class="nav">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/help">Help</a></li>
-          <li><a href="/users">Users</a></li>
-          <li><a href="">Logout</a></li>       
+          <li><a @click="goToHome">Home</a></li>
+          <li><a @click="goToHelp">Help</a></li>
+          <li><a @click="goToUsers">Users</a></li>
+          <li><a @click="logout">Logout</a></li>       
         </ul>
       </div>
     </div>
     <div v-else>
       <div class="nav">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="help">Help</a></li>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/signup">Signup</a></li>       
+          <li><a @click="goToHome">Home</a></li>
+          <li><a @click="goToHelp">Help</a></li>
+          <li><a @click="goToLogin">Login</a></li>
+          <li><a @click="goToSignup">Signup</a></li>       
         </ul>
       </div>
     </div>
@@ -42,7 +42,8 @@ import axios from 'axios';
         
       }
     },
-    
+
+//ログイン情報を取得する
     created() {
       axios.get('/api/v1/microposts.json')
         .then(response => {this.user_id = response.data})
@@ -50,7 +51,37 @@ import axios from 'axios';
     },
     
     methods: {
-
+//ログアウトする
+      logout() {
+        axios.delete(`/api/v1/sessions/${this.user_id}.json`)
+        .then(response => {window.location.href ="/";})
+        .catch(response => {console.log("Miss")})
+      },
+      
+//Homeページに移動する
+      goToHome() {
+        window.location.href ="/";
+      },
+      
+//Helpページを移動する
+      goToHelp() {
+        window.location.href ="/help";
+      },
+      
+//ユーザー一覧ページに移動する
+      goToUsers() {
+        window.location.href ="/users";
+      },
+      
+//Loginページに移動する
+      goToLogin() {
+        window.location.href ="/login";
+      },
+      
+//Singnupページに移動する
+      goToSignup() {
+        window.location.href ="/signup";
+      },
     }
   }
 </script>

@@ -6,10 +6,16 @@ class Api::V1::SessionsController < ApiController
     user = User.find_by(email: email.downcase)
     if user && user.authenticate(password)
       session[:user_id] = user.id
-      render json: {}, status: :ok
+      render json: {}, status: 200
     else
       render json: {}, status: 500
     end
+  end
+  
+  def destroy
+    session.delete(:user_id)
+    @current_user = nil
+    render json: {}, status: 200
   end
     
 end
