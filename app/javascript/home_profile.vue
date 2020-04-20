@@ -1,13 +1,20 @@
 <template>
   <div id="app">
     <div v-if = "existUserId">
-      <div v-for="micropost in microposts" :key="micropost.id">
-        <p>User ID: {{ micropost.user_id}}</p>
-        <p>Post: {{ micropost.content}}</p>
-        <a v-bind:href = "'/users/' + micropost.user_id">Go to user page</a>
-        <br>
-        <hr>
-      </div>
+      <p>{{ my_information.name }}</p>
+      <p>{{ my_information.email }}</p>
+      <a v-bind:href= "'/users/' + my_information.id">view my profile</a>
+    </div>
+    <div v-else>
+      <h1>Welcome to the Sample App</h1>
+      <h2>
+        This is the home page for the
+        <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
+        and
+        <a href="https://v1-jp.vuejs.org/">Vue.js</a>
+        sample application.
+      </h2>
+      <button @click="goToSignup">Sign Up now!</button>
     </div>
   </div>
 </template>
@@ -27,7 +34,8 @@ import axios from 'axios';
     data: function () {
       return {  
         microposts: [],
-        user_id: null
+        user_id: null,
+        my_information: null
         
       }
     },
@@ -35,7 +43,7 @@ import axios from 'axios';
     created() {
       axios.get('/api/v1/microposts.json')
         .then(response => {this.user_id = response.data
-                           this.getMicroposts()
+                           this.getMyInfomation()
         })
         .catch(response => {console.log("Miss")})
     },
@@ -50,12 +58,27 @@ import axios from 'axios';
         } else {
           console.log("Please login")
         }
+      },
+      
+//自分のユーザー情報を取得する
+      getMyInfomation() {
+        axios.get(`/api/v1/users/${this.user_id}.json`)
+        .then(response => {this.my_information = response.data})
+        .catch(response => {console.log("No data")})
+      },
+
+//signupページへ移動する
+      goToSignup() {
+        window.location.href ="/signup"
       }
     }
   }
 </script>
 
 <style scoped>
+  button {
+    text-align:center;
+  }
   /*p {*/
   /*  font-size: 2em;*/
   /*  text-align: center;*/

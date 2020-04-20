@@ -7,6 +7,8 @@
       <div v-for="micropost in microposts" :key="micropost.id">
         <p>User: {{ user.name }}</p>
         <p>Post: {{ micropost.content }}</p>
+        <br>
+        <hr>
         <div v-if = "deleteMicropost">
           <p>Delete</p>
         </div>
@@ -33,7 +35,7 @@ import axios from 'axios';
     
     data: function () {
       return {
-        user: [],
+        user: null,
         user_id: null,
         id : null,
         url: "",
@@ -58,7 +60,9 @@ import axios from 'axios';
       getUser() {
         if (this.user_id !== null) {
         axios.get(`/api/v1/users/${this.id}.json`)
-        .then(response => {this.user = response.data})
+        .then(response => {
+          this.user = response.data
+        })
         .catch(response => {console.log("Miss")})
         } else {
           window.location.href ="/login"
@@ -76,7 +80,7 @@ import axios from 'axios';
         if (this.user_id !== null) {
           axios.get(`/api/v1/microposts/${this.id}.json`)
           .then(response => {this.microposts = response.data
-                             this.microposts_count = response.data.length
+                            this.microposts_count = response.data.length
           })
           .catch(response => {console.log("Miss")})
         } else {

@@ -1,4 +1,6 @@
 <% if logged_in? %>
+<% if false %>
+Railsでのmy_profileと投稿機能
   <div class="row">
     <aside class="col-md-4">
       <section class="user_info">
@@ -12,11 +14,12 @@
       </section>
     </aside>
     <div class="col-md-8">
-      <!--Railsでの投稿データ一覧表示機能-->
-      <!--<h3>Micropost Feed</h3>-->
-      <!--<%= render 'shared/feed' %>-->
+      Railsでの投稿データ一覧表示機能
+      <h3>Micropost Feed</h3>
+      <%= render 'shared/feed' %>
     </div>
   </div>
+Railsでのログインしていない時のView
 <% else %>
   <div class="center jumbotron">
     <h1>Welcome to the Sample App</h1>
@@ -33,5 +36,9 @@
   <%= link_to image_tag("rails.png", alt: "Rails logo"),
               'http://rubyonrails.org/' %>
 <% end %>
+<% end %>
+
+<!--ここからがJavascript-->
+<%= javascript_pack_tag 'home_profile_vue' %>
 <%= javascript_pack_tag 'post_vue' %>
 <%= javascript_pack_tag 'home_vue' %>
