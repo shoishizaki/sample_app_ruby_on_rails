@@ -5,6 +5,9 @@
       <div v-for="user in users" :key="user.id">
         <p>User Nema: {{ user.name}}</p>
         <p>User Email: {{ user.email}}</p>
+        <a v-bind:href = "'/users/' + user.id">Go to user page</a>
+        <br>
+        <hr>
       </div>
     </div>
   </div>

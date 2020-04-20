@@ -7,11 +7,11 @@
       <div v-for="micropost in microposts" :key="micropost.id">
         <p>User: {{ user.name }}</p>
         <p>Post: {{ micropost.content }}</p>
-        <br>
-        <hr>
         <div v-if = "deleteMicropost">
           <p>Delete</p>
         </div>
+        <br>
+        <hr>
       </div>
     </div>
   </div>
