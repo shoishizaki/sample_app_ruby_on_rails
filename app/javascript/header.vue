@@ -13,7 +13,7 @@
     <div v-else>
       <div class="nav">
         <ul>
-          <li><a href="/home">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="help">Help</a></li>
           <li><a href="/login">Login</a></li>
           <li><a href="/signup">Signup</a></li>       
