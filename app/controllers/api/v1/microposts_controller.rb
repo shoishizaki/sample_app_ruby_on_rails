@@ -24,4 +24,10 @@ def show
   render json: user_micropost
 end
 
+def destroy
+  micropost = Micropost.find(params[:id])
+  micropost.destroy
+  render json:{}, status: 200
+end
+
 end

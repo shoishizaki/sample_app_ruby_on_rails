@@ -8,7 +8,7 @@
         <p>User: {{ user.name }}</p>
         <p>Post: {{ micropost.content }}</p>
         <div v-if = "deleteMicropost">
-          <p>Delete</p>
+          <button @click="deleteMicropostAction(micropost.id)">Delete</button>
         </div>
         <br>
         <hr>
@@ -85,6 +85,17 @@ import axios from 'axios';
           .catch(response => {console.log("Miss")})
         } else {
           window.location.href ="/login"
+        }
+      },
+      
+//Micropostのデータを消去する
+      deleteMicropostAction(id) {
+        if(this.deleteMicropost) {
+          axios.delete(`/api/v1/microposts/${id}.json`)
+          .then(response => {window.location.href =`/users/${this.user_id}`})
+          .catch(response => {console.log("Miss")})
+        } else {
+          console.log("Cannot delete Micropost!")
         }
       }
     }
