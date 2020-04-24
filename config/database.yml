@@ -24,24 +24,36 @@
 #   <<: *default
 #   database: db/production.sqlite3
 
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8
+#   database: sample_app_development
+#   pool: 5
+#   timeout: 5000
+#   username: root
+#   password: Sho12345
+#   socket: /tmp/mysql.sock
+
+# development:
+#   <<: *default
+#   database: sample_app_development
+
+# test:
+#   <<: *default
+#   database: sample_app_test
+
+# production:
+#   <<: *default
+#   database: sample_app_production
+
 default: &default
+  database: root
   adapter: mysql2
   encoding: utf8
-  database: sample_app_development
-  pool: 5
-  timeout: 5000
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: Sho12345
-  socket: /tmp/mysql.sock
+  host: db #変更(docker-compose.ymlのservice名を記載)
 
 development:
   <<: *default
-  database: sample_app_development
-
-test:
-  <<: *default
-  database: sample_app_test
-
-production:
-  <<: *default
-  database: sample_app_production
