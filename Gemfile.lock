@@ -312,7 +312,7 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (4.0.4)
-    puma (3.9.1)
+    puma (3.12.4)
     rack (2.2.2)
     rack-proxy (0.6.5)
       rack
@@ -450,7 +450,7 @@ DEPENDENCIES
   minitest-reporters (= 1.1.14)
   mysql2
   pg (= 0.20.0)
-  puma (= 3.9.1)
+  puma (= 3.12.4)
   rails (= 5.1.6)
   rails-controller-testing (= 1.0.2)
   sass-rails (= 5.0.6)
