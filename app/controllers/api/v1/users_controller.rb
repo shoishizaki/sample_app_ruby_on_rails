@@ -1,8 +1,10 @@
+require_relative "../../../service/users_controller_service"
+
 class Api::V1::UsersController < ApiController
   
   def index
-    users = User.all
-    render json: users
+    user = UsersControllerService.new
+    render json: user.get_all_users
   end
   
   # ストロングパラメーターを貼る

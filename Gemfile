@@ -21,6 +21,11 @@ group :development, :test do
   # gem 'sqlite3', '1.3.13'
   gem 'mysql2'
   gem 'byebug',  '9.0.6', platform: :mri
+  #gem 'capybara'
+  gem 'capybara', '~> 2.13' 
+  gem 'selenium-webdriver'
+  # gem "chromedriver-helper"
+  gem 'webdrivers'
 end
 
 group :development do
