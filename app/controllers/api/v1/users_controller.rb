@@ -2,18 +2,15 @@ require_relative "../../../service/users_controller_service"
 
 class Api::V1::UsersController < ApiController
   
+  # ユーザー一覧を送る
   def index
-    service = UsersControllerService.new
-    render json: service.get_all_users
+    render json: create_servive_instance.get_all_users
   end
   
-  # ストロングパラメーターを貼る
-  # 統一する書き方を統一する
-  # ある程度の部分で改行する
-  # 見やすい書き方を心がけて練習する
+  # 新規ユーザー登録を行う。
   def create
-    service = UsersControllerService.new
-    user = service.create_new_user(params[:name], params[:email].downcase, params[:password], params[:password_confirmation])
+    user = create_servive_instance.create_new_user(params[:name], params[:email].downcase,
+                                                   params[:password], params[:password_confirmation])
       
     if user.save
       session[:user_id] = user.id
@@ -25,10 +22,16 @@ class Api::V1::UsersController < ApiController
   
   #ユーザーの詳細を送る
   def show
-    # user = User.find(params[:id])
-    service = UsersControllerService.new
-    user = service.find_user(params[:id])
+    user = create_servive_instance.find_user(params[:id])
     render json: user
+  end
+
+  private
+
+  # サービス層のインスタンスを作成する。
+  def create_servive_instance
+    service = UsersControllerService.new
+    return service
   end
   
 end
