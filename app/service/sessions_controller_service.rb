@@ -1,10 +1,14 @@
 class SessionsControllerService
   class << self
 
-    # ログインユーザーを探す。
-    def find_user(email)
+    # ログインユーザーの認証を確認
+    def session_user(email, password)
       user = User.find_by(email: email)
-      return user
+      if user && user.authenticate(password)
+        return user.id
+      else
+        return false
+      end
     end
 
   end
