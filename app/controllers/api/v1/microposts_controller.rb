@@ -24,8 +24,12 @@ class Api::V1::MicropostsController < ApiController
 
   # 投稿記事を消去する。
   def destroy
-    MicropostsControllerService.find_micropost(params[:id]).destroy
-    render json:{}, status: 200
+    if MicropostsControllerService.destoroy_micropost(params[:id])
+      render json:{}, status: 200
+    else
+      render json:{}, status: 500
+    end
+    
   end
 
 end

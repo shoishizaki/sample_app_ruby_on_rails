@@ -17,10 +17,15 @@ class MicropostsControllerService
       return posts
     end
 
-    # 指定されたIDの記事を探す。
-    def find_micropost(id)
+    # 投稿を削除する。
+    def destoroy_micropost(id)
       micropost = Micropost.find(id)
-      return micropost
+      if micropost
+        micropost.destroy
+        return true
+      else
+        return false
+      end
     end
 
   end
