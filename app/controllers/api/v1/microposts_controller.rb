@@ -4,8 +4,7 @@ class Api::V1::MicropostsController < ApiController
 
   # 新規投稿
   def create
-    micropost_data = MicropostsControllerService.create_post(params[:user_id], params[:micropost])
-    if micropost_data.save
+    if MicropostsControllerService.create_post(params[:user_id], params[:micropost])
       render json: {} ,status: :ok
     else
       render json:{}, status: 500

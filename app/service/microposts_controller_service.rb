@@ -4,7 +4,11 @@ class MicropostsControllerService
     # 投稿postを作成する。
     def create_post(user_id, content)
       post = Micropost.new(user_id: user_id, content: content)
-      return post
+      if post.save
+        return true
+      else
+        return false
+      end
     end
 
     # 個人の投稿を探す。
