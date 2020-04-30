@@ -12,7 +12,11 @@ class UsersControllerService
       user = User.new(name: name, email: email, password: password, 
                       password_confirmation: password_confirmation, 
                       activated: true)
-      return user
+      if user.save
+        return user.id
+      else
+        return false
+      end
     end
 
     # 特定のユーザーを探す。

@@ -9,11 +9,10 @@ class Api::V1::UsersController < ApiController
   
   # 新規ユーザー登録を行う。
   def create
-    user = UsersControllerService.create_new_user(params[:name], params[:email].downcase,
-                                                   params[:password], params[:password_confirmation])
-      
-    if user.save
-      session[:user_id] = user.id
+    user_id = UsersControllerService.create_new_user(params[:name], params[:email].downcase,
+                                                     params[:password], params[:password_confirmation])
+    if user_id
+      session[:user_id] = user_id
       render json: {}, status: 200
     else
       render json: {}, status: 500
