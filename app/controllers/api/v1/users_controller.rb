@@ -22,7 +22,12 @@ class Api::V1::UsersController < ApiController
   #ユーザーの詳細を送る
   def show
     user = UsersControllerService.find_user(params[:id])
-    render json: user
+    if user
+      render json: user
+    else
+      render json: {}, status: 500
+    end
+    
   end
   
 end
