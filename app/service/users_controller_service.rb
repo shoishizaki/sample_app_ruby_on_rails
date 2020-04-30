@@ -1,23 +1,25 @@
 class UsersControllerService
+  class << self
+    
+    # ユーザーの全情報を入手する。
+    def get_all_users
+      users = User.all
+      return users
+    end
 
-  # ユーザーの全情報を入手する。
-  def get_all_users
-    users = User.all
-    return users
+    # ユーザーを新規作成する。
+    def create_new_user(name, email, password, password_confirmation)
+      user = User.new(name: name, email: email, password: password, 
+                      password_confirmation: password_confirmation, 
+                      activated: true)
+      return user
+    end
+
+    # 特定のユーザーを探す。
+    def find_user(user_id)
+      user = User.find(user_id)
+      return user
+    end
+
   end
-
-  # ユーザーを新規作成する。
-  def create_new_user(name, email, password, password_confirmation)
-    user = User.new(name: name, email: email, password: password, 
-                    password_confirmation: password_confirmation, 
-                    activated: true)
-    return user
-  end
-
-  # 特定のユーザーを探す。
-  def find_user(user_id)
-    user = User.find(user_id)
-    return user
-  end
-
 end
