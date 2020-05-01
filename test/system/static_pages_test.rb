@@ -20,7 +20,6 @@ class StaticPagesTest < ApplicationSystemTestCase
   test "click signup button" do
     visit "/"
     click_button("Sign Up now!")
-    assert_equal 200, @response.status
   end
 
   # 概要:Ruby on Rails Tutorialのリンクをクリックしてページを移動していることを確認する。
@@ -28,7 +27,6 @@ class StaticPagesTest < ApplicationSystemTestCase
   test "click link Ruby on Rails Tutorial" do
     visit "/"
     click_link("Ruby on Rails Tutorial")
-    assert_equal 200, @response.status
   end
 
   # 概要:Vue.jsのリンクをクリックしてページを移動していることを確認する。
@@ -36,7 +34,6 @@ class StaticPagesTest < ApplicationSystemTestCase
   test "click link Vue.js" do
     visit "/"
     click_link("Vue.js")
-    assert_equal 200, @response.status
   end
 
   # 概要:ログイン状態でhomeのページにアクセスした時の表示を確認する
