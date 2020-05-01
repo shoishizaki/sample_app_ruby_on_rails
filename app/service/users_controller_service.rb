@@ -22,11 +22,7 @@ class UsersControllerService
     # 特定のユーザーを探す。
     def find_user(user_id)
       user = User.find(user_id)
-      if user
-        return user
-      else
-        return false
-      end
+      return user
     end
 
   end

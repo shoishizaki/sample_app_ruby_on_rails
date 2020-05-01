@@ -4,8 +4,9 @@ class Api::V1::SessionsController < ApiController
   
   # ログイン認証
   def create
-    if SessionsControllerService.session_user(params[:email].downcase, params[:password])
-      session[:user_id] = SessionsControllerService.session_user(params[:email].downcase, params[:password])
+    user_id = SessionsControllerService.session_user(params[:email].downcase, params[:password])
+    if user_id
+      session[:user_id] = user_id
       render json: {}, status: 200
     else
       render json: {}, status: 500

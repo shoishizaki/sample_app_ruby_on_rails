@@ -4,9 +4,14 @@ class Api::V1::MicropostsController < ApiController
 
   # 新規投稿
   def create
-    if MicropostsControllerService.create_post(params[:user_id], params[:micropost])
-      render json: {} ,status: :ok
-    else
+    begin
+      result = MicropostsControllerService.create_post(params[:user_id], params[:micropost])
+      if result != true
+        raise result
+      else
+        render json:{}, status: 200
+      end
+    rescue ActiveRecord::RecordInvalid
       render json:{}, status: 500
     end
   end

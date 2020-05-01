@@ -21,13 +21,12 @@ class Api::V1::UsersController < ApiController
   
   #ユーザーの詳細を送る
   def show
-    user = UsersControllerService.find_user(params[:id])
-    if user
+    begin
+      user = UsersControllerService.find_user(params[:id])
       render json: user
-    else
+    rescue ActiveRecord::RecordNotFound
       render json: {}, status: 500
     end
-    
   end
   
 end
